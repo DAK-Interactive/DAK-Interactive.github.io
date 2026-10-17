@@ -12,6 +12,7 @@
     --card: #ffffff;
     --border: #e3e7ee;
     --accent: #2563eb;
+    --pill-bg: #eef2f8;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -21,6 +22,7 @@
       --card: #121a2b;
       --border: #212b3e;
       --accent: #5b9dff;
+      --pill-bg: #182238;
     }
   }
   * { box-sizing: border-box; }
@@ -39,27 +41,47 @@
     max-width: 440px;
     width: 100%;
     text-align: center;
+    animation: fadeIn 0.4s ease-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   .icon {
-    width: 72px;
-    height: 72px;
-    border-radius: 20px;
-    border: 2px solid var(--fg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
+    width: 84px;
+    height: 84px;
+    border-radius: 22px;
     margin: 0 auto 20px;
+    display: block;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   }
   h1 {
-    font-size: 22px;
-    margin: 0 0 8px;
+    font-size: 23px;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .by {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 16px;
   }
   p.tagline {
     color: var(--muted);
     font-size: 15px;
-    line-height: 1.5;
-    margin: 0 0 28px;
+    line-height: 1.55;
+    margin: 0 0 18px;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--pill-bg);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-bottom: 28px;
   }
   .links {
     display: flex;
@@ -68,7 +90,7 @@
   }
   a.btn {
     display: block;
-    padding: 13px 16px;
+    padding: 14px 16px;
     border-radius: 12px;
     border: 1px solid var(--border);
     background: var(--card);
@@ -76,13 +98,22 @@
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    transition: opacity 0.15s;
+    transition: transform 0.12s, opacity 0.12s;
   }
-  a.btn:active { opacity: 0.7; }
+  a.btn:active { opacity: 0.7; transform: scale(0.98); }
   a.btn.primary {
     background: var(--accent);
     color: #ffffff;
     border-color: var(--accent);
+  }
+  .email-fallback {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .email-fallback a {
+    color: var(--accent);
+    text-decoration: none;
   }
   footer {
     margin-top: 32px;
@@ -94,25 +125,31 @@
 </head>
 <body>
   <div class="card">
-    <div class="icon">📦</div>
+    <img class="icon" src="icon.png" alt="Item Archive icon" />
     <h1>Item Archive</h1>
+    <p class="by">by DAK Interactive</p>
     <p class="tagline">
       Organize your home inventory, storage, and items offline with ease.
-      100% Private — No Accounts, No Servers.
     </p>
+    <div class="pill">🔒 100% Private &amp; Offline</div>
     <div class="links">
       <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.itemarchive.app">
-        Get It On Google Play
+        Get it on Google Play
       </a>
-      <a class="btn" href="https://gist.github.com/PhisoQ/4029fca2f7769a6afa818fb4ef752775">
+      <a class="btn" href="https://dak-interactive.github.io/Item-Archive-Privacy-Policy/">
         Privacy Policy
       </a>
-      <a class="btn" href="mailto:dakinteractive@gmail.com">
-        Contact Us
-      </a>
+      <div>
+        <a class="btn" href="mailto:dakinteractive@gmail.com">
+          Contact Us
+        </a>
+        <p class="email-fallback">
+          Or email us directly: <a href="mailto:dakinteractive@gmail.com">dakinteractive@gmail.com</a>
+        </p>
+      </div>
     </div>
     <footer>
-      DAK Interactive · <a href="mailto:dakinteractive@gmail.com">dakinteractive@gmail.com</a>
+      © DAK Interactive · <a href="mailto:dakinteractive@gmail.com">dakinteractive@gmail.com</a>
     </footer>
   </div>
 </body>
